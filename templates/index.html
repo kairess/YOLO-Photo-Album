@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" type="text/javascript"></script>
+    <link  href="https://cdn.jsdelivr.net/npm/nanogallery2@3/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
+    <script  type="text/javascript" src="https://cdn.jsdelivr.net/npm/nanogallery2@3/dist/jquery.nanogallery2.min.js"></script>
+  </head>
+  <body>
+    <div id="nanogallery">
+      {% for img_url, tags in photos.items() %}
+      <a href="/{{ img_url }}" data-ngtags="{{ ' '.join(tags) }}">
+        <img src="/{{ img_url }}"/>
+      </a>
+      {% endfor %}
+    </div>
+
+    <script>
+      $("#nanogallery").nanogallery2({
+        // KEYWORD FILTERING
+        galleryFilterTags: true,
+        galleryFilterTagsMode: 'multiple',
+
+        galleryMosaic : [                       // default layout
+          { w: 2, h: 2, c: 1, r: 1 },
+          { w: 1, h: 1, c: 3, r: 1 },
+          { w: 1, h: 1, c: 3, r: 2 },
+          { w: 1, h: 2, c: 4, r: 1 },
+          { w: 2, h: 1, c: 5, r: 1 },
+          { w: 2, h: 2, c: 5, r: 2 },
+          { w: 1, h: 1, c: 4, r: 3 },
+          { w: 2, h: 1, c: 2, r: 3 },
+          { w: 1, h: 2, c: 1, r: 3 },
+          { w: 1, h: 1, c: 2, r: 4 },
+          { w: 2, h: 1, c: 3, r: 4 },
+          { w: 1, h: 1, c: 5, r: 4 },
+          { w: 1, h: 1, c: 6, r: 4 }
+        ],
+        galleryMosaicXS : [                     // layout for XS width
+          { w: 2, h: 2, c: 1, r: 1 },
+          { w: 1, h: 1, c: 3, r: 1 },
+          { w: 1, h: 1, c: 3, r: 2 },
+          { w: 1, h: 2, c: 1, r: 3 },
+          { w: 2, h: 1, c: 2, r: 3 },
+          { w: 1, h: 1, c: 2, r: 4 },
+          { w: 1, h: 1, c: 3, r: 4 }
+        ],
+        galleryMosaicSM : [                     // layout for SM width
+          { w: 2, h: 2, c: 1, r: 1 },
+          { w: 1, h: 1, c: 3, r: 1 },
+          { w: 1, h: 1, c: 3, r: 2 },
+          { w: 1, h: 2, c: 1, r: 3 },
+          { w: 2, h: 1, c: 2, r: 3 },
+          { w: 1, h: 1, c: 2, r: 4 },
+          { w: 1, h: 1, c: 3, r: 4 }
+        ],
+        galleryMaxRows: 1,
+        galleryDisplayMode: 'rows',
+        gallerySorting: 'random',
+        thumbnailDisplayOrder: 'random',
+
+        thumbnailHeight: '180', thumbnailWidth: '220',
+        thumbnailAlignment: 'scaled',
+        thumbnailGutterWidth: 0, thumbnailGutterHeight: 0,
+        thumbnailBorderHorizontal: 0, thumbnailBorderVertical: 0,
+
+        thumbnailToolbarImage: null,
+        thumbnailToolbarAlbum: null,
+        thumbnailLabel: { display: false },
+
+        // DISPLAY ANIMATION
+        // for gallery
+        galleryDisplayTransitionDuration: 1500,
+        // for thumbnails
+        thumbnailDisplayTransition: 'imageSlideUp',
+        thumbnailDisplayTransitionDuration: 1200,
+        thumbnailDisplayTransitionEasing: 'easeInOutQuint',
+        thumbnailDisplayInterval: 60,
+
+        // THUMBNAIL HOVER ANIMATION
+        thumbnailBuildInit2: 'image_scale_1.15',
+        thumbnailHoverEffect2: 'thumbnail_scale_1.00_1.05_300|image_scale_1.15_1.00',
+        touchAnimation: true,
+        touchAutoOpenDelay: 500,
+
+        // LIGHTBOX
+        viewerToolbar: { display: false },
+        viewerTools:    {
+          topLeft:   'label',
+          topRight:  'shareButton, rotateLeft, rotateRight, fullscreenButton, closeButton'
+        },
+
+        // GALLERY THEME
+        galleryTheme : { 
+          thumbnail: { background: '#111' },
+        },
+
+        // DEEP LINKING
+        locationHash: true
+      });
+    </script>
+  </body>
+</html>
